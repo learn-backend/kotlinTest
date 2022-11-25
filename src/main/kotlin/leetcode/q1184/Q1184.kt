@@ -1,5 +1,9 @@
 package leetcode.q1184
 
+import kotlin.math.max
+import kotlin.math.min
+
+// https://leetcode.com/problems/distance-between-bus-stops/
 class Q1184 {
     fun distanceBetweenBusStops(distance: IntArray, start: Int, destination: Int): Int {
         val stops = distance.size
@@ -17,10 +21,6 @@ class Q1184 {
     }
 
     private fun addBetween(distance: IntArray, start: Int, end: Int): Int {
-        var count = 0
-        for (i in start until end) {
-            count += distance[i]
-        }
-        return count
+        return (start until end).fold(0) { acc, i -> acc + distance[i] }
     }
 }
