@@ -1,5 +1,6 @@
 package leetcode.q263
 
+// https://leetcode.com/problems/ugly-number/
 class Q263 {
 
     fun isUgly(n: Int): Boolean {
