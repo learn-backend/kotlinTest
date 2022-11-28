@@ -16,6 +16,7 @@ fun sumSubarrayMins(arr: IntArray): Int {
     val n = arr.size
 
     val d = IntArray(n)
+    val stack = IntArray(n + 1)
 
     if (arr.isEmpty()) {
         return 0
@@ -25,31 +26,25 @@ fun sumSubarrayMins(arr: IntArray): Int {
         return arr.single()
     }
 
+    var idxStack = 0
+
     d[0] = arr[0]
-    d[1] = d[0] + arr[1] + Math.min(arr[0], arr[1])
 
-    for (i in 2 until n) {
-        d[i] = d[i - 1] + minSumValue(arr, i)
+    var res = d[0].toLong()
 
-        if (d[i] >= M) {
-            d[i] %= M
+    for (i in 1 until n) {
+        // idxStack 값이 위치한 곳은 최소 값
+        // idxStack이 -1 이면, arr[i] 값이 가장 작음
+        while (idxStack >= 0 && arr[stack[idxStack]] >= arr[i]) {
+            idxStack--
         }
+
+        // arr[i] 값이 가장 작으면, arr[i] * 추가되는 횟수(i+1)
+        // 그 외 더 작은 값이 있으면 해당 최소 값 합 + 그 사이의 추가된 횟수
+        d[i] = if (idxStack < 0) arr[i] * (i + 1) else d[stack[idxStack]] + arr[i] * (i - stack[idxStack])
+        stack[++idxStack] = i
+        res += d[i]
     }
 
-    return d[n - 1]
-}
-
-// 0 -> arr[0]
-// 1 -> min(arr(1), arr(0)), min(arr(1))
-// 2 -> min(arr(2), arr(1), arr(0)) + min(arr(2), arr(1)) + min(arr(2))
-fun minSumValue(arr: IntArray, idx: Int): Int {
-    val d = IntArray(idx + 1)
-
-    d[0] = arr[idx]
-
-    for (i in 1..idx) {
-        d[i] = Math.min(d[i - 1], arr[idx - i])
-    }
-
-    return d.sum()
+    return (res % M).toInt()
 }
