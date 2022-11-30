@@ -23,6 +23,7 @@ object Solution {
             }
         }
 
-        return StringBuilder(n.substring(0, targetIndex)).append(x.toString()).append(n.substring(targetIndex, length)).toString()
+        return "${n.substring(0, targetIndex)}${x}${n.substring(targetIndex, length)}"
+//        return StringBuilder(n.substring(0, targetIndex)).append(x.toString()).append(n.substring(targetIndex, length)).toString()
     }
 }
