@@ -1,4 +1,4 @@
-package com.example.kotlintTest.backjoon.q2309
+package backjoon.q2309
 
 
 class Q2309 {
