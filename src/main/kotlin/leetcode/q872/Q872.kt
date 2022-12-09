@@ -30,27 +30,27 @@ object Q872 {
 
     fun leafSimilar(root1: TreeNode?, root2: TreeNode?): Boolean {
         val leafs1 = mutableListOf<Int>()
-        search(root1, leafs1)
+        leafs1.addAllLeafValue(root1)
 
         val leafs2 = mutableListOf<Int>()
-        search(root2, leafs2)
+        leafs2.addAllLeafValue(root2)
 
         return leafs1 == leafs2
     }
 
-    fun search(root: TreeNode?, leafs: MutableList<Int>) {
-        if (root == null) {
-            return
-        }
+    private fun MutableList<Int>.addAllLeafValue(root: TreeNode?) {
+        root?.let {
+            if (it.isLeafNode()) {
+                this.add(it.`val`)
+                return
+            }
 
-        if (root.left == null && root.right == null) {
-            leafs.add(root.`val`)
-            return
+            addAllLeafValue(it.left)
+            addAllLeafValue(it.right)
         }
-
-        search(root.left, leafs)
-        search(root.right, leafs)
     }
+
+    private fun TreeNode.isLeafNode() = left == null && right == null
 
 }
 
