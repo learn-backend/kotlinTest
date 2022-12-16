@@ -8,7 +8,6 @@ class Solution {
         val size = arr.size;
         // list 선언과 동시에 초기화 하는법 (사이즈, 초기값)
         val isVisits = MutableList(size) {false}
-        var canReach = false
 
         val bfsQueue: Queue<Int> = LinkedList()
         bfsQueue.offer(start)
@@ -18,18 +17,16 @@ class Solution {
             val current = arr[currentIndex]
             isVisits[currentIndex] = true
 
-            if (current == 0) {
-                canReach = true
-                break
-            }
+            if (current == 0) return true
 
-            val currentLeft = currentIndex - current
-            if (currentLeft >= 0 && !isVisits[currentLeft]) bfsQueue.offer(currentLeft)
-
-            val currentRight = currentIndex + current
-            if (currentRight < size && !isVisits[currentRight]) bfsQueue.offer(currentRight)
+            this.visitIfPossible(bfsQueue, isVisits, currentIndex - current, size)
+            this.visitIfPossible(bfsQueue, isVisits, currentIndex + current, size)
         }
 
-        return canReach
+        return false
+    }
+
+    private fun visitIfPossible(bfsQueue: Queue<Int>, isVisits: MutableList<Boolean>, next: Int, size: Int) {
+        if (next in 0 until size && !isVisits[next]) bfsQueue.offer(next)
     }
 }
