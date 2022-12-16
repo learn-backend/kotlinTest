@@ -7,10 +7,9 @@ class Solution {
         var count = 0
 
         while (num1 != 0) {
-            num1 = when (num1 % 2) {
-                0 -> num1 / 2
-                1 -> num1 - 1
-                else -> 0
+            num1 = when (num1 % 2 == 0) {
+                true -> num1 / 2
+                false -> num1 - 1
             }
             count ++
         }
