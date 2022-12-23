@@ -1,5 +1,7 @@
 package leetcode.q1971
 
+// https://leetcode.com/problems/find-if-path-exists-in-graph/description/
+
 object Q1971 {
     fun validPath(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
         if (source == destination) {
