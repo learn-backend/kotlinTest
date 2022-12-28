@@ -8,7 +8,7 @@ import java.util.*
 fun main() {
     var root = TreeNode.makeTreeNode(listOf(5,3,6,2,4,null,7))
 //    println(root)
-    var result = findTarget(root, 28)
+    var result = findTarget(root, 9)
     println(result)
 }
 fun findTarget(root: TreeNode?, k: Int): Boolean {
@@ -45,8 +45,8 @@ class TreeNode(var `val`: Int) {
                 queue.add(root)
                 IntProgression.fromClosedRange(1, values.lastIndex - 1, 2).forEach {
                     val parent = queue.pop()
-                    values[it]?.let { value -> TreeNode(value) }?.also { treeNode -> parent.left = treeNode }?.also { treeNode -> queue.add(treeNode) }
-                    values[it + 1]?.let { value -> TreeNode(value) }?.also { treeNode -> parent.right = treeNode }?.also { treeNode -> queue.add(treeNode) }
+                    values[it]?.let { value -> TreeNode(value) }?.also { treeNode -> parent.left = treeNode }?.also { treeNode -> queue.offer(treeNode) }
+                    values[it + 1]?.let { value -> TreeNode(value) }?.also { treeNode -> parent.right = treeNode }?.also { treeNode -> queue.offer(treeNode) }
                 }
                 if (values.size % 2 == 0 && values.last() != null) {
                     val parent = queue.pop()
