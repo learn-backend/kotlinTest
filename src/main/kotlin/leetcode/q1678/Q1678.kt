@@ -6,6 +6,7 @@ class Solution {
         val result = StringBuilder()
         var isO = false
 
+        // 정규식으로도 풀 수 있음
         for (c in command) {
             when (c) {
                 'G' -> result.append("G")
