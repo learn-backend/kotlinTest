@@ -1,5 +1,6 @@
 package leetcode.q520
 
+// https://leetcode.com/problems/detect-capital/description/
 fun main() {
 //    Q520.detectCapitalUse("FlaG")
 //    Q520.detectCapitalUse("USA")
@@ -9,8 +10,6 @@ fun main() {
 object Q520 {
 
     fun detectCapitalUse(word: String): Boolean {
-        val n = word.length
-
         if (word.isAllUpperCase()) {
             return true
         }
