@@ -1,7 +1,6 @@
 package leetcode.q1480
 
-import java.util.*
-
+// https://leetcode.com/problems/running-sum-of-1d-array/description/?envType=study-plan&id=level-1
 fun main() {
     val result = runningSum(intArrayOf(1,2,3,4))
     println(result.contentToString())
